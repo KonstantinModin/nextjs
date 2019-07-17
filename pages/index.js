@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 
-const indexPage = () => {
-    const eventHandler = (event) => {
+class IndexPage extends Component {
+    static async getInitialProps(context) {
+        console.log('context', context);
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({appName: "Super App!"});
+            }, 1000);
+        });
+        return promise;
+    };
+    
+    eventHandler = (event) => {
         Router.push('/auth');
     };
 
-    return (
-        <div>
-            <h1>The Main Page</h1>
-            <h2>Go to <Link href="/auth"><a>Auth</a></Link></h2>
-            <button onClick={eventHandler}>Auth</button>
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <h1>The Main Page of {this.props.appName}</h1>
+                <h2>Go to <Link href="/auth"><a>Auth</a></Link></h2>
+                <button onClick={this.eventHandler}>Auth</button>
+            </div>
+        );
+
+    }
+
 };
 
-export default indexPage;
+export default IndexPage;
