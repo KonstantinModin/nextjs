@@ -23,6 +23,7 @@ class IndexPage extends Component {
                 <h1>The Main Page of {this.props.appName}</h1>
                 <h2>Go to <Link href="/auth"><a>Auth</a></Link></h2>
                 <button onClick={this.eventHandler}>Auth</button>
+                <button onClick={()=>Router.push('/info')}>Go to Info</button>
             </div>
         );
 
